@@ -17,7 +17,7 @@ for line in fin:
     jp = line.split(",")[1]
     outfile_fr = str(cnt)+"_fr.aiff"
     outfile_jp = str(cnt)+"_jp.aiff"
-    cmd_fr = "say -v Thomas " + fr + " -o "+ outfile_fr
+    cmd_fr = "say -v Thomas " + '"' + fr + '"' + " -o "+ outfile_fr
     cmd_jp = "say -v Kyoko " + jp + " -o "+ outfile_jp
     print(cmd_fr)
     print(cmd_jp)
@@ -25,7 +25,7 @@ for line in fin:
     os.system(cmd_jp)
     status_fr, _ = subprocess.getstatusoutput("ls "+outfile_fr)
     status_jp, _ = subprocess.getstatusoutput("ls "+outfile_jp)
-    if status_fr<1 && status<jp<1:
+    if (status_fr<1 and status_jp<1):
         ffmpeg_file.write("file "+"'"+outfile_fr+"'"+"\n")
         ffmpeg_file.write("file "+"'"+outfile_jp+"'"+"\n")
     cnt = cnt+1
